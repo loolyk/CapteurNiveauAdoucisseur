@@ -1,0 +1,30 @@
+on Distance#Distance do
+  // Lorsque la valeur de la distance est mise à jour (événement 'on'),
+  // exécuter ces actions.
+  let,1,[Distance#Distance] // Stocker la valeur de la distance dans la variable 1
+  let,2,200 // Définir la valeur maximale de la distance 100 % de remplissage
+  let,3,480 // Définir la valeur minimale de la distance 0% de remplissage
+
+  // Calculer la plage totale en soustrayant la valeur minimale (0%) de la valeur maximale (100%)
+  let,4,[var#3]-[var#2]
+
+  // Calculer la différence de distance par rapport à la valeur maximale (100%)
+  let,5,[var#1]-[var#2]
+
+  // Calculer le pourcentage entre 0 et 100 en divisant la différence de distance par la plage totale calculée (400)
+  let,6,[var#5]/[var#4]
+
+  // Limiter le pourcentage entre 0 et 100
+  if [var#6] > 1
+    let,6,1
+  endif
+  if [var#6] < 0
+    let,6,0
+  endif
+
+  // Convertir le pourcentage en une valeur entre 0 et 100 en le multipliant par 100 et en soustrayant de 100
+  let,7,100-[var#6]*100
+
+  // Mettre à jour la valeur du dummy device "Taux" avec le pourcentage calculé
+  TaskValueSet,Taux,Pourcentage,[var#7]
+endon
