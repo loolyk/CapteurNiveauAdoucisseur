@@ -27,4 +27,5 @@ on Distance#Distance do
 
 // Update the value of the dummy device "Rate" with the calculated percentage
     TaskValueSet,Taux,Pourcentage,[var#7]
+
 endon
